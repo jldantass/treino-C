@@ -1,11 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h> // se colocarmos a palavra abs (valor), esse numero que foi declarado no valor se torna absoluto, ou seja, o seu sinal nao importara
+#include <time.h>
 
 int main () {
 
 printf ("Bem vindo ao jogo da adivinhacao!!\n");
 
-int numerosecreto = 42;
+int segundos = time(0);
+srand (segundos);
+
+int numeroaleatorio = rand();
+
+int numerosecreto = numeroaleatorio % 100;
 
 int chute;
 int tentativas = 1;
@@ -41,11 +47,12 @@ do {
     }
 
     tentativas++;
-    pontosperdidos = pontosperdidos + 10;
+    pontosperdidos += 10;
 
-    pontos = (pontos - pontosperdidos);
 
 } while (chute != numerosecreto);
+
+pontos = 990 - pontosperdidos;
 
 printf ("Voce acertou em %d tentativas e com %d pontos!\n", tentativas, pontos);
 printf ("Fim de jogo!!\n");
