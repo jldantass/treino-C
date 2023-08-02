@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> // se colocarmos a palavra abs (valor), esse numero que foi declarado no valor se torna absoluto, ou seja, o seu sinal nao importara
 
 int main () {
 
