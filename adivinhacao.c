@@ -1,44 +1,52 @@
-#include <stdio.h> 
-#define NUMERO_DE_TENTATIVAS 5   //criar uma constante
+#include <stdio.h>
 
 int main () {
-    printf ("****************************************** \n");
-    printf ("* Bem vindo ao nosso jogo de adivinhacao * \n");
-    printf ("****************************************** \n");
 
-    int numerosecreto = 42;
-    int chute;
+printf ("Bem vindo ao jogo da adivinhacao!!\n");
 
-    for (int i = 1; i <= NUMERO_DE_TENTATIVAS; i++) {      //cria a variavel e da valor, cria uma condiçao pra esta variavel, fale o que vai acontecer | usa for quando quiser uma limitaçao
-        printf ("Tentativa %d de %d.\n", i, NUMERO_DE_TENTATIVAS);
-        printf ("Qual eh o seu chute? \n");
-        scanf ("%d", &chute);
-        printf ("Seu chute foi: %d \n", chute);
+int numerosecreto = 42;
 
-        int acertou = (chute == numerosecreto);
-        int maior = chute > numerosecreto;
+int chute;
+int tentativas = 1;
 
-        if (chute < 0) {
-            printf ("Voce nao pode chutar numeros negativos!\n");
-            i--;
+int pontos = 1000;
+int pontosperdidos = 0;
 
-            continue;   //quando esse bloco de codigo for verdadeiro, faz com que o resto do bloco nao seja executado, apenas esse unico printf e volta para o loop inicial (o inicio do for)
-        }
+do {
+    printf ("Tentativa %d\n", tentativas);
+    printf ("Qual eh o seu chute?\n");
+    scanf ("%d", &chute);
+    printf ("Se chute foi %d\n", chute);
 
-        if (acertou) {
-            printf ("Parabens, voce acertou!\n");
+    if (chute<0) {
+        printf ("Voce não pode chutar numeros negativos!!\n");
+        continue;
+    }
 
-            break;    //o loop acaba aqui; interrompe o loop
-        }
+    int maior = chute > numerosecreto;
+    int acertou = (chute == numerosecreto);
 
-        else if (maior) {
-            printf ("Seu numero chute foi maior que o numero secreto!\n");
-        }
+    if (acertou) {
+        printf ("Parabens, voce acertou!\n");
+        break;
+    }
 
-        else {
-            printf ("Seu numero chute foi menor que o numero secreto!\n");
-        }
-    } 
+    else if (maior) {
+            printf ("Seu chute foi maior que o numero secreto!\n");
+    }
 
-    printf ("Fim de jogo.\n");
+    else {
+        printf ("Seu chute foi menor que o numero secreto!\n");
+    }
+
+    tentativas++;
+    pontosperdidos = pontosperdidos + 10;
+
+    pontos = (pontos - pontosperdidos);
+
+} while (chute != numerosecreto);
+
+printf ("Voce acertou em %d tentativas e com %d pontos!\n", tentativas, pontos);
+printf ("Fim de jogo!!\n");
+
 }
