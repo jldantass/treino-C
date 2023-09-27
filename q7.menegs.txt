@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef enum {
+    CIRCULO,
+    QUADRADO,
+    TRIANGULO
+} tFigura;
+
+typedef struct {
+    int raio;
+    int area;
+    int comprimento;
+} tDadosCirculo;
+
+typedef struct {
+    int altura;
+    int lado;
+    int area;
+} tDadosQuad;
+
+typedef struct {
+    int area;
+    int lado;
+} tDadosTriang;
+
+typedef union {
+    tDadosCirculo dadosCirc;
+    tDadosQuad dadosQuad;
+    tDadosTriang dadosTriang;
+} tDadosFiguras;
+
+typedef struct {
+    tFigura tipoFigura;
+    tDadosFiguras dadosDaFig;
+} figura;
+
+int main () {
+
+    figura var1;
+
+
+    printf("Qual figura você deseja?\n");
+    printf("0 para circulo,\n");
+    printf("1 para quadrado,\n");
+    printf("2 para triângulo,\n");
+    printf ("Digite: ");
+    scanf ("%d", &var1.tipoFigura);
+    printf ("Digite os dados para a figura escolhida:\n");
+
+    if (var1.tipoFigura == 0) {
+        printf ("Raio do circulo: ");
+        scanf ("%d", &var1.dadosDaFig.dadosCirc.raio);
+        printf ("Area do circulo: ");
+        scanf ("%d", &var1.dadosDaFig.dadosCirc.area);
+        printf ("Comprimento do circulo: ");
+        scanf ("%d", &var1.dadosDaFig.dadosCirc.comprimento);
+        printf ("Raio: %d, Area: %d, Comprimento: %d.", var1.dadosDaFig.dadosCirc.raio, var1.dadosDaFig.dadosCirc.area, var1.dadosDaFig.dadosCirc.comprimento);
+    }
+    else if (var1.tipoFigura == 1) {
+        printf ("Altura do quadrado: ");
+        scanf ("%d", &var1.dadosDaFig.dadosQuad.altura);
+        printf ("Lado do quadrado: ");
+        scanf ("%d", &var1.dadosDaFig.dadosQuad.lado);
+        printf ("Area do quadrado: ");
+        scanf ("%d", &var1.dadosDaFig.dadosQuad.area);
+        printf ("Altura: %d, Lado: %d, Area: %d.", var1.dadosDaFig.dadosQuad.altura, var1.dadosDaFig.dadosQuad.lado, var1.dadosDaFig.dadosQuad.area);
+    }
+    else if (var1.tipoFigura == 2) {
+        printf ("Lado do Triangulo: ");
+        scanf ("%d", &var1.dadosDaFig.dadosTriang.lado);
+        printf ("Area do triangulo: ");
+        scanf ("%d", &var1.dadosDaFig.dadosTriang.area);
+        printf ("Lado: %d, Area: %d.", var1.dadosDaFig.dadosTriang.lado, var1.dadosDaFig.dadosTriang.area);
+    }
+}

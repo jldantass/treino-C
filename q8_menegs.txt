@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    int hora;
+    int minuto;
+    int segundos;
+} tTempo;
+
+int converte_segundos (tTempo var1) {
+
+    int conversao;
+    int hora_seg;
+    hora_seg = (var1.hora*3600);
+    int min_seg;
+    min_seg = (var1.minuto*60);
+
+    conversao = (hora_seg + min_seg + var1.segundos);
+    return conversao;
+}
+
+int main () {
+
+    tTempo tempo;
+
+    printf ("Digite a hora: ");
+    scanf ("%d", &tempo.hora);
+    printf ("Digite os minutos: ");
+    scanf ("%d", &tempo.minuto);
+    printf ("Digite os segundos: ");
+    scanf ("%d", &tempo.segundos);
+
+    printf ("Total de segundos: %d", converte_segundos(tempo));
+
+}
